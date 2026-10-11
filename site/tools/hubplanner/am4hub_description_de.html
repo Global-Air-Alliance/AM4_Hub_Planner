@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AM4 Hub-Planer — Beschreibung</title>
+<link rel="stylesheet" href="../shared_resources/fonts/fonts.css">
+<style>
+:root{--bg:#0f1117;--surface:#181b24;--surface2:#1e2230;--border:#2a2f3e;--text:#e4e6ed;--text2:#8b8fa4;--accent:#3b82f6;--accent2:#60a5fa;--green:#22c55e;--gold:#eab308;--purple:#a855f7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f5f8;--surface:#fff;--surface2:#f0f1f5;--border:#d4d7e0;--text:#1a1d2b;--text2:#5c6070;--accent:#2563eb;--accent2:#3b82f6;--green:#16a34a;--gold:#ca8a04;--purple:#9333ea}}
+:root[data-theme="dark"]{--bg:#0f1117;--surface:#181b24;--surface2:#1e2230;--border:#2a2f3e;--text:#e4e6ed;--text2:#8b8fa4}
+*{box-sizing:inherit;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
+.container{max-width:780px;margin:0 auto;padding:2rem 1.25rem}
+h1{font-size:1.5rem;font-weight:700;margin-bottom:.25rem;letter-spacing:-.02em}
+.subtitle{color:var(--text2);font-size:.85rem;margin-bottom:1.5rem}
+h2{font-size:1.15rem;font-weight:700;margin-top:2rem;margin-bottom:.5rem;color:var(--accent2);letter-spacing:-.01em}
+h3{font-size:.95rem;font-weight:600;margin-top:1.25rem;margin-bottom:.35rem;color:var(--text)}
+p{margin-bottom:.75rem;font-size:.9rem}
+ul{margin:0 0 .75rem 1.25rem;font-size:.9rem}
+li{margin-bottom:.35rem}
+code{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:var(--surface2);padding:.1rem .35rem;border-radius:4px;color:var(--accent2)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin:1rem 0}
+.tag{display:inline-block;padding:.1rem .4rem;border-radius:4px;font-size:.72rem;font-weight:600;font-family:'JetBrains Mono',monospace}
+.tag-y{background:#3b82f620;color:var(--accent2)}
+.tag-j{background:#eab30820;color:var(--gold)}
+.tag-f{background:#a855f720;color:var(--purple)}
+.btn{display:inline-block;padding:.7rem 1.5rem;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .15s}
+.btn:hover{opacity:.9}
+.btn-wrap{margin:2rem 0;text-align:center}
+.footer{text-align:center;color:var(--text2);font-size:.7rem;margin-top:2.5rem;padding-bottom:1rem}
+.topbar{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;min-height:2.1rem}
+.topbar .nav{font-size:.8rem;color:var(--accent2);text-decoration:none;border:1px solid var(--border);padding:.35rem .75rem;border-radius:6px}
+.topbar .right{margin-left:auto;display:flex;align-items:center;gap:.6rem}
+.topbar #donate-button-container{line-height:0}
+.topbar #donate-button img{display:block}
+.topbar .flag{margin-left:auto;display:inline-flex;align-items:center;padding:.35rem .45rem;border:1px solid var(--border);border-radius:6px;line-height:0}
+.topbar .flag svg{border-radius:2px;box-shadow:0 0 0 1px rgba(128,128,128,.35)}
+.topbar a:hover{border-color:var(--accent)}
+.topbar a:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="topbar"><div class="right">
+<div id="donate-button-container">
+<div id="donate-button"></div>
+<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+<script>
+PayPal.Donation.Button({
+env:'production',
+hosted_button_id:'CEEYJAWQUQNBG',
+image: {
+src:'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',
+alt:'Donate with PayPal button',
+title:'PayPal - The safer, easier way to pay online!',
+}
+}).render('#donate-button');
+</script>
+</div>
+<a class="flag" href="am4hub_description_en.html" hreflang="en" lang="en" title="English version" aria-label="English version"><svg viewBox="0 0 60 30" width="30" height="15" aria-hidden="true"><clipPath id="ukc"><path d="M0,0v30h60v-30z"/></clipPath><clipPath id="ukt"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><g clip-path="url(#ukc)"><path d="M0,0v30h60v-30z" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#ukt)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></g></svg></a></div></div>
+
+  <h1>✈️ AM4 Hub-Planer</h1>
+  <p class="subtitle">Airline Manager 4 — Detailbeschreibung</p>
+
+  <div class="btn-wrap" style="margin-top:0">
+    <a class="btn" href="am4hub_de.html">🔎 Zum Hub-Planer</a>
+  </div>
+
+  <h2>Was die App macht</h2>
+  <p>Du wählst deinen Hub und gibst dein verfügbares Kapital ein. Die App prüft alle Ziele ab diesem Hub, für die es im Spiel Nachfrage gibt (rund 3'900 Flughäfen), gegen alle 311 Passagierflugzeuge, die im AM4-Bestellmenü erhältlich sind. Sie zeigt, welche Routen mit welchem Flugzeugtyp im gewählten Zeitraum am meisten Gewinn bringen und mit deinem Kapital finanzierbar sind.</p>
+  <p>Für eine einzelne Strecke mit Abschreibung und Wiederverkauf gibt es den <a href="../route-calculator/am4calc_de.html" style="color:var(--accent2)">Streckenrechner</a>.</p>
+
+  <h2>Hub &amp; Kapital</h2>
+  <ul>
+    <li><strong>Land / Flughafen</strong> — Wähle zuerst das Land (alle Länder des Spiels, alphabetisch), danach den Flughafen deines Hubs (mit IATA-Code). Die Pistenlänge des Hubs wird unter der Auswahl angezeigt.</li>
+    <li><strong>Verfügbares Kapital ($)</strong> — Betrag, den du für Flugzeugkäufe einsetzen willst. Es werden nur Flugzeuge berücksichtigt, deren Kaufpreis ins Kapital passt.</li>
+    <li><strong>Basis</strong> — Ist dein Hub eine Basis mit ausgebauter Piste, aktivierst du diese Checkbox. Dann wird die Piste des Hubs ignoriert und nur die Piste am Zielflughafen begrenzt die Flugzeugwahl. Im Easy-Modus ist die Checkbox ausgegraut, weil Pistenlängen dort keine Rolle spielen.</li>
+  </ul>
+
+  <h2>Kapitaleinsatz</h2>
+  <h3>«Ein Flugzeug»</h3>
+  <p>Findet die beste Kombination aus Route und Flugzeugtyp, deren Kaufpreis ins Kapital passt. Das Ergebnis erscheint als grüne Karte.</p>
+  <h3>«Mehrere, je eigene Route»</h3>
+  <p>Verteilt das Kapital auf bis zu «Max. Anzahl Flugzeuge», jedes auf einer eigenen Route. Die App sucht die Kombination mit dem höchsten Gesamtgewinn und beachtet dabei Kapital und Anzahl gleichzeitig. Ein nicht verwendeter Rest bleibt als Restkapital stehen.</p>
+  <h3>«Mehrere, auch pro Route»</h3>
+  <p>Wie oben, aber eine stark nachgefragte Route kann mehrere Flugzeuge desselben Typs erhalten. Diese teilen sich die Nachfrage der Route zu gleichen Teilen. Ein weiteres Flugzeug wird nur eingesetzt, wenn es den Gewinn der Route erhöht. Dieser Modus liefert nie weniger Gewinn als «je eigene Route».</p>
+  <p>Beide Mehrfach-Modi zeigen eine violette Karte mit dem Flottenplan: Ziel, Anzahl und Typ, Konfiguration, Flüge pro Tag, Einnahmen, Kosten, Gewinn und Investition je Route, dazu eine Totalzeile.</p>
+
+  <h2>Kosten &amp; Einstellungen</h2>
+  <ul>
+    <li><strong>Treibstoff</strong> — $/1000 lbs (Standard = 500)</li>
+    <li><strong>CO₂-Zertifikate</strong> — $/1000 Stk., wie im Spiel angezeigt (Standard = 140)</li>
+    <li><strong>Zeitraum</strong> — Tage, für die Einnahmen, Kosten und Gewinn berechnet werden (Standard = 20)</li>
+    <li><strong>Flugstunden / Tag</strong> — pro Flugzeug (Standard = 20)</li>
+    <li><strong>Pilot, Besatzung, Ingenieure, Techniker</strong> — $/Tag (Standard = 200, 150, 250, 225). Die Löhne findest du im Spiel unter «Fluggesellschaft» → «Mitarbeiter»; sie ändern sich mit Lohnerhöhungen und -kürzungen.</li>
+    <li><strong>Max. Flüge / Tag je Flugzeug</strong> — so viele Abflüge, wie du realistisch pro Tag startest (Standard = 10)</li>
+    <li><strong>Max. Anzahl Flugzeuge</strong> — Obergrenze für die Flotte in den Mehrfach-Modi (Standard = 3); bei «Ein Flugzeug» ausgegraut</li>
+    <li><strong>Spielmodus</strong> — «Easy» oder «Realism» (Standard = Realism)</li>
+    <li><strong>Kapitaleinsatz</strong> — siehe oben</li>
+  </ul>
+
+  <h2>Ergebnisse</h2>
+  <h3>Routenliste</h3>
+  <p>Unter der Karte stehen alle profitablen Routen ab dem Hub mit dem jeweils besten Flugzeugtyp: Ziel, Distanz, Piste, Nachfrage <span class="tag tag-y">Y</span> <span class="tag tag-j">J</span> <span class="tag tag-f">F</span>, Konfiguration, Flüge pro Tag, Einnahmen, Kosten und Gewinn im Zeitraum, Kaufpreis und «Kaufpreis zurück» (nach wie vielen Tagen der Gewinn den Kaufpreis deckt). Die Liste ist nach jeder Spalte sortierbar, lässt sich nach Ziel oder Flugzeug durchsuchen und zeigt 100 Routen pro Seite.</p>
+  <p>Ein Klick auf eine Zeile öffnet die Kostenaufteilung (Personal, Wartung, Treibstoff, CO₂) und bis zu sechs alternative Flugzeugtypen für diese Route.</p>
+
+  <h2>Berechnung</h2>
+  <h3>Flüge pro Tag</h3>
+  <p>Die Flugzeit eines Abflugs entspricht der einfachen Strecke: <code>Flugzeit = Entfernung / Geschwindigkeit</code>. Im Easy-Modus fliegen die Flugzeuge 1,5× schneller. Die Flüge pro Tag ergeben sich aus <code>Flugstunden pro Tag / Flugzeit</code> (abgerundet), begrenzt durch «Max. Flüge / Tag». Ist die Flugzeit länger als die Flugstunden pro Tag, wird anteilig gerechnet (z.&nbsp;B. 0,8 Flüge pro Tag).</p>
+  <h3>Einnahmen</h3>
+  <p>Ticketpreise nach den Spielformeln (Easy/Realism) mit den optimalen Multiplikatoren (<span class="tag tag-y">Y ×1.1</span> <span class="tag tag-j">J ×1.08</span> <span class="tag tag-f">F ×1.06</span>). Wie im Spiel wird jeder Preis auf ganze Dollar abgerundet und um $2 reduziert. Die Sitzkonfiguration wird nach F&gt;J&gt;Y-Priorität anhand der Nachfrage optimiert; freie Plätze werden als Economy gezählt. Einnahmen entstehen nur für Passagiere, für die Nachfrage besteht.</p>
+  <h3>Kosten</h3>
+  <ul>
+    <li><strong>Personal</strong> — tägliche Gehälter × Besatzungsgrösse des Typs</li>
+    <li><strong>Wartung</strong> — A-Check-Kosten anteilig pro Flug: A-Check-Preis × Flugstunden (auf ganze Stunden aufgerundet) / Wartungsintervall, im Realism-Modus doppelt; dazu Verschleiss von 0,00075 % des Kaufpreises pro Flug</li>
+    <li><strong>Treibstoff</strong> — Distanz × Verbrauch (lbs/km) × Preis / 1000</li>
+    <li><strong>CO₂-Zertifikate</strong> — (Distanz × CO₂-Koeffizient × Passagiere + Sitzplätze) × Preis / 1000; Passagiere gewichtet mit Y ×1, J ×2, F ×3</li>
+  </ul>
+  <p>Abschreibung und Wiederverkauf werden im Hub-Planer nicht berücksichtigt. Der Gewinn ist Einnahmen minus diese vier Kostenarten.</p>
+  <h3>Pisten und Reichweite</h3>
+  <ul>
+    <li><strong>Realism</strong> — massgebend ist die kürzere Piste von Hub und Ziel; mit «Basis» nur die Piste am Ziel</li>
+    <li><strong>Easy</strong> — Pistenlängen spielen keine Rolle</li>
+    <li><strong>Zwischenlandungen</strong> werden nicht berücksichtigt: Liegt ein Ziel ausserhalb der Reichweite eines Typs, fällt dieser für die Route weg. Ziele unter 100 km werden nicht berechnet.</li>
+  </ul>
+  <h3>Grenzen des Modells</h3>
+  <p>Die Ergebnisse sind Schätzungen. Sie gehen davon aus, dass du jedes Flugzeug im Rahmen der eingestellten Flugstunden und Abflüge lückenlos einsetzt und die Nachfrage voll ausschöpfst. Konkurrenz auf der Route, Reputation, Kerosin- und CO₂-Schwankungen sowie Trainings im Spiel fliessen nicht ein.</p>
+
+  <div class="btn-wrap">
+    <a class="btn" href="am4hub_de.html">🔎 Zum Hub-Planer</a>
+  </div>
+
+  <div class="footer">
+    Inoffizielles Fan-Tool — nicht verbunden mit Xombat / Airlines Manager.<br>
+    Spieldaten: AM4 Community (abc8747, Lizenz prüfen). Keine Gewähr auf Richtigkeit.<br>
+    Das Tool selbst erhebt keine Nutzerdaten. Beim Seitenaufruf wird der Spenden-Button von PayPal geladen; dabei erhält PayPal deine IP-Adresse.
+  </div>
+</div>
+</body>
+</html>
