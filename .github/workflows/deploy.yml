@@ -9,8 +9,9 @@
 #   DEPLOY_KNOWN_HOSTS  Ausgabe von: ssh-keyscan -p <port> <host>  (gleich wie beim Repository website)
 #   DEPLOY_HOST         SSH-Host laut lima-city (gleich wie beim Repository website)
 #   DEPLOY_USER         SSH-Benutzer laut lima-city (gleich wie beim Repository website)
-#   DEPLOY_PATH         optional: Zielordner relativ zur rrsync-Einschränkung des Schlüssels.
-#                       Leer lassen, wenn der Schlüssel direkt auf www/tools/hubplanner beschränkt ist.
+#   DEPLOY_PATH         gleicher Wert wie beim Repository website (Ordner www/ aus Sicht des Schlüssels).
+#                       Der Unterordner tools/hubplanner ist unten fest eingetragen (TARGET) und wird
+#                       immer angehängt – der Workflow kann daher nie direkt in www/ schreiben oder löschen.
 #   DEPLOY_PORT         optional, Standard 22
 #   DISCORD_THREAD_ID   ID des Discord-Forenposts; mehrere IDs mit Komma trennen (Meldung in jeden Post)
 #   DISCORD_LABEL       optional: Text vor jeder Discord-Meldung, z. B. "🧩 Shared resources"
@@ -20,7 +21,7 @@
 #   MAIL_PORT           optional, Standard 465 (SSL); bei 587 wird STARTTLS verwendet
 #   MAIL_RECIPIENT      Empfänger (wenn leer: admin@globalairall.net)
 # Benötigte Secrets (Settings → Secrets and variables → Actions → Tab Secrets):
-#   DEPLOY_KEY          privater SSH-Schlüssel (nur für dieses Repository, serverseitig per rrsync auf www/tools/hubplanner beschränkt)
+#   DEPLOY_KEY          privater SSH-Schlüssel, derselbe wie beim Repository website (serverseitig per rrsync auf www/ beschränkt)
 #   DISCORD_WEBHOOK     Webhook-URL des Discord-Forenkanals (ohne ?thread_id)
 #   MAIL_PASSWORD       Passwort des Absender-Postfachs
 
@@ -42,6 +43,8 @@ concurrency: deploy-hub-planner
 
 env:
   SRC: site/tools/hubplanner
+  # Fester Zielordner unterhalb von www/ – nicht ändern
+  TARGET: tools/hubplanner
 
 jobs:
   deploy:
@@ -49,10 +52,23 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Quellordner prüfen
+      - name: Quelle und Ziel prüfen
+        env:
+          BASE: ${{ vars.DEPLOY_PATH }}
         run: |
           # Schutz vor --delete mit leerem Quellordner
           test -n "$(ls -A "$SRC" 2>/dev/null)" || { echo "::error::$SRC fehlt oder ist leer"; exit 1; }
+          # Ziel muss genau tools/<tool> unterhalb von www/ sein
+          case "$TARGET" in
+            tools/route_calculator|tools/hubplanner|tools/shared_resources) ;;
+            *) echo "::error::Unzulässiges Ziel '$TARGET'"; exit 1 ;;
+          esac
+          case "$BASE" in
+            *..*) echo "::error::DEPLOY_PATH darf kein '..' enthalten"; exit 1 ;;
+          esac
+          DEST="${BASE:-.}"; DEST="${DEST%/}/$TARGET"
+          echo "Ziel: $DEST"
+          echo "DEST=$DEST" >> "$GITHUB_ENV"
 
       - name: SSH einrichten
         run: |
@@ -64,7 +80,6 @@ jobs:
       - name: Dateien übertragen
         env:
           DRY: ${{ inputs.dry_run && '--dry-run' || '' }}
-          DEST: ${{ vars.DEPLOY_PATH || '.' }}
         run: |
           # -c: Vergleich per Prüfsumme, damit nur wirklich geänderte Dateien übertragen und gemeldet werden
           rsync -rlvzc --delete $DRY \
