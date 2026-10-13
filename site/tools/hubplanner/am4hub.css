@@ -1,0 +1,24 @@
+/* AM4 Hub Planner – tool-specific styles (shared styles: ../shared_resources/am4tools.css) */
+.am4 .hub-row{display:grid;grid-template-columns:1.2fr 1fr 1.4fr auto;gap:.75rem;align-items:end}
+@media(max-width:760px){.am4 .hub-row{grid-template-columns:1fr 1fr}}
+.am4 .check{display:flex;align-items:center;gap:.5rem;padding:.5rem .65rem;margin:0;background:var(--am4-surface2);border:1px solid var(--am4-border);border-radius:8px;cursor:pointer;font-size:.85rem;color:var(--am4-text);white-space:nowrap}
+.am4 .check input{width:auto;accent-color:var(--am4-accent)}
+.am4 .check.off{opacity:.5;cursor:not-allowed}
+.am4 .check:focus-within{outline:2px solid var(--am4-accent2);outline-offset:2px}
+.am4 .mode-desc{font-size:.75rem;color:var(--am4-text2);margin-top:.4rem;min-height:2.4em}
+.am4 .cap-grid{grid-template-columns:1fr 2fr;margin-top:.75rem}
+@media(max-width:600px){.am4 .cap-grid{grid-template-columns:1fr}}
+.am4 .costs{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:.5rem;margin-top:1rem;padding-top:.85rem;border-top:1px solid var(--am4-border)}
+.am4 .costs div{font-size:.75rem;color:var(--am4-text2);text-align:center}
+.am4 .costs b{display:block;font-size:.85rem;color:var(--am4-text);font-variant-numeric:tabular-nums}
+.am4 .plan-card .table-wrap{margin-top:1rem}
+.am4 .list-head{margin:1.5rem 0 .75rem}
+.am4 .list-head h3{font-size:.95rem;margin-right:auto}
+.am4 #routeTable tr.rt{cursor:pointer}
+.am4 #routeTable tr.rt:hover td{background:var(--am4-surface2)}
+.am4 #routeTable tr.rt:focus-visible{outline:2px solid var(--am4-accent2);outline-offset:-2px}
+.am4 .am4-table tr.detail>td{background:var(--am4-surface2);white-space:normal;text-align:left;padding:.75rem 1rem}
+.am4 .am4-table.alt{width:auto;margin-top:.5rem;font-size:.75rem}
+.am4 .am4-table.alt td,.am4 .am4-table.alt th{padding:.3rem .5rem;background:none}
+.am4 .more{margin-top:.75rem;background:var(--am4-surface2);color:var(--am4-text);border:1px solid var(--am4-border)}
+.am4 .more:hover{color:var(--am4-text)}
